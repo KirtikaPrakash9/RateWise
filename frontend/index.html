@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RateWise AI – Find the best way to send money from UAE" />
+  <meta name="theme-color" content="#1a73e8" />
+  <title>RateWise AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <!-- ── Header ──────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">💸</span>
+      <span class="logo-text">RateWise <span class="ai-badge">AI</span></span>
+    </div>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="hi">हि</button>
+      <button class="lang-btn" data-lang="ur">اردو</button>
+      <button class="lang-btn" data-lang="tl">TL</button>
+      <button class="lang-btn" data-lang="ar">عر</button>
+    </div>
+  </header>
+
+  <!-- ── Hero ────────────────────────────────────────────────────────── -->
+  <main class="container">
+    <section class="hero">
+      <h1 class="hero-title" data-i18n="hero_title">Send Money Smarter</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Compare real-time rates & fees. Know exactly how much your family receives.</p>
+    </section>
+
+    <!-- ── Calculator ──────────────────────────────────────────────── -->
+    <section class="card calculator">
+      <div class="input-row">
+        <div class="input-group">
+          <label for="amountInput" data-i18n="label_amount">Amount (AED)</label>
+          <input
+            id="amountInput"
+            type="number"
+            min="50"
+            step="50"
+            placeholder="1000"
+            inputmode="numeric"
+            aria-label="Amount in AED"
+          />
+        </div>
+        <div class="input-group">
+          <label for="currencySelect" data-i18n="label_currency">Send to</label>
+          <select id="currencySelect" aria-label="Destination currency">
+            <option value="INR">🇮🇳 India (INR)</option>
+            <option value="PKR">🇵🇰 Pakistan (PKR)</option>
+            <option value="PHP">🇵🇭 Philippines (PHP)</option>
+          </select>
+        </div>
+      </div>
+      <button id="checkBtn" class="btn-primary" data-i18n="btn_check">
+        Check Best Option
+      </button>
+    </section>
+
+    <!-- ── AI Recommendation badge ─────────────────────────────────── -->
+    <section id="recommendationSection" class="hidden">
+      <div id="recommendationBadge" class="recommendation-badge"></div>
+    </section>
+
+    <!-- ── Best Result ─────────────────────────────────────────────── -->
+    <section id="bestResultSection" class="hidden card best-result">
+      <div class="best-label" data-i18n="label_best">🏆 Best Option</div>
+      <div class="best-provider" id="bestProvider"></div>
+      <div class="best-amount" id="bestAmount"></div>
+      <div class="best-details" id="bestDetails"></div>
+    </section>
+
+    <!-- ── Comparison Table ────────────────────────────────────────── -->
+    <section id="comparisonSection" class="hidden">
+      <h2 class="section-title" data-i18n="label_compare">All Providers</h2>
+      <div id="comparisonTable" class="comparison-table"></div>
+    </section>
+
+    <!-- ── Rate Trend Chart ────────────────────────────────────────── -->
+    <section id="trendSection" class="hidden card">
+      <h2 class="section-title" data-i18n="label_trend">Rate Trend (14 days)</h2>
+      <canvas id="trendChart" height="120" aria-label="Rate trend chart"></canvas>
+      <p id="trendNote" class="trend-note"></p>
+    </section>
+
+    <!-- ── Alert Setup ─────────────────────────────────────────────── -->
+    <section class="card alert-setup">
+      <h2 class="section-title" data-i18n="label_alert">🔔 Rate Alert</h2>
+      <p data-i18n="alert_desc">Get notified when your target rate is reached.</p>
+      <div class="input-row">
+        <input id="targetRate" type="number" step="0.01" placeholder="e.g. 22.60" aria-label="Target rate" />
+        <input id="alertEmail" type="email" placeholder="your@email.com" aria-label="Email address" />
+      </div>
+      <button id="alertBtn" class="btn-secondary" data-i18n="btn_alert">Set Alert</button>
+      <p id="alertMsg" class="alert-msg hidden"></p>
+    </section>
+
+    <!-- ── Offline banner ──────────────────────────────────────────── -->
+    <div id="offlineBanner" class="offline-banner hidden" data-i18n="offline_msg">
+      ⚠️ You're offline. Showing last cached rates.
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p data-i18n="footer_disclaimer">
+      Rates are indicative. Always verify with the provider before transferring.
+    </p>
+    <p class="footer-updated" id="lastUpdated"></p>
+  </footer>
+
+  <!-- Inline tiny chart library (no external deps) -->
+  <script src="app.js"></script>
+</body>
+</html>
