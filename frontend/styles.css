@@ -1,0 +1,282 @@
+/* =========================================================
+   RateWise AI – Stylesheet
+   Ultra-lightweight, mobile-first design
+   ========================================================= */
+
+/* ── Reset & Variables ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:   #1a73e8;
+  --primary-d: #1558b0;
+  --green:     #0d9e6e;
+  --yellow:    #f59e0b;
+  --red:       #e53935;
+  --bg:        #f5f7fa;
+  --card:      #ffffff;
+  --text:      #1f2937;
+  --muted:     #6b7280;
+  --border:    #e5e7eb;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(0,0,0,.08);
+  --font:      'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* RTL support for Arabic / Urdu */
+[dir="rtl"] { direction: rtl; text-align: right; }
+
+/* ── Header ─────────────────────────────────────────────── */
+.header {
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1.25rem; }
+.logo-icon { font-size: 1.5rem; }
+.ai-badge {
+  background: #fff;
+  color: var(--primary);
+  font-size: .65rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: .05em;
+}
+
+.lang-switcher { display: flex; gap: 4px; flex-wrap: wrap; }
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.5);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .75rem;
+  transition: background .15s;
+}
+.lang-btn:hover, .lang-btn.active {
+  background: rgba(255,255,255,.25);
+  border-color: #fff;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero { text-align: center; padding: 8px 0 4px; }
+.hero-title { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
+.hero-sub { color: var(--muted); margin-top: 6px; font-size: .95rem; }
+
+/* ── Card ───────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* ── Calculator ─────────────────────────────────────────── */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-group label { font-size: .85rem; font-weight: 600; color: var(--muted); }
+
+input[type="number"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color .15s;
+  appearance: none;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn-primary, .btn-secondary {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-primary:hover { opacity: .92; }
+.btn-primary:active { transform: scale(.98); }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ── AI Recommendation ──────────────────────────────────── */
+.recommendation-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: .95rem;
+  box-shadow: var(--shadow);
+}
+.recommendation-badge.send-now {
+  background: #d1fae5;
+  border-left: 5px solid var(--green);
+  color: #065f46;
+}
+.recommendation-badge.wait {
+  background: #fef3c7;
+  border-left: 5px solid var(--yellow);
+  color: #92400e;
+}
+.rec-icon { font-size: 1.8rem; flex-shrink: 0; }
+.rec-text .rec-title { font-size: 1.1rem; font-weight: 800; }
+.rec-text .rec-reason { font-size: .85rem; margin-top: 2px; opacity: .85; }
+.rec-confidence {
+  margin-left: auto;
+  font-size: 1.5rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ── Best Result ────────────────────────────────────────── */
+.best-result { text-align: center; }
+.best-label { font-size: .8rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .08em; }
+.best-provider { font-size: 1.2rem; font-weight: 700; margin-top: 4px; }
+.best-amount { font-size: 2.8rem; font-weight: 900; color: var(--green); margin: 8px 0; }
+.best-details { font-size: .88rem; color: var(--muted); }
+
+/* ── Comparison Table ───────────────────────────────────── */
+.comparison-table { display: flex; flex-direction: column; gap: 10px; }
+.provider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--border);
+  transition: transform .1s;
+}
+.provider-row:active { transform: scale(.99); }
+.provider-row.best  { border-color: var(--green); }
+.provider-row.ok    { border-color: var(--yellow); }
+.provider-row.expensive { border-color: var(--red); }
+
+.prov-left { display: flex; flex-direction: column; gap: 2px; }
+.prov-name { font-weight: 700; font-size: .95rem; }
+.prov-fee  { font-size: .78rem; color: var(--muted); }
+.prov-promo { font-size: .75rem; color: var(--green); font-weight: 600; }
+
+.prov-right { text-align: right; }
+.prov-amount { font-size: 1.3rem; font-weight: 800; }
+.prov-rate { font-size: .78rem; color: var(--muted); }
+.prov-tag {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+.tag-best     { background: #d1fae5; color: #065f46; }
+.tag-ok       { background: #fef3c7; color: #92400e; }
+.tag-expensive{ background: #fee2e2; color: #991b1b; }
+
+/* ── Trend Chart ────────────────────────────────────────── */
+#trendChart { width: 100%; display: block; margin-top: 8px; }
+.trend-note { font-size: .8rem; color: var(--muted); margin-top: 6px; text-align: center; }
+
+/* ── Alert Setup ────────────────────────────────────────── */
+.alert-setup .input-row { grid-template-columns: 1fr 1fr; }
+.alert-setup p { font-size: .88rem; color: var(--muted); margin-bottom: 12px; }
+.alert-msg { font-size: .88rem; margin-top: 10px; padding: 8px 12px; border-radius: 6px; }
+.alert-msg.success { background: #d1fae5; color: #065f46; }
+.alert-msg.error   { background: #fee2e2; color: #991b1b; }
+
+/* ── Offline Banner ─────────────────────────────────────── */
+.offline-banner {
+  background: #fef3c7;
+  color: #92400e;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: .88rem;
+  font-weight: 600;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 20px 16px;
+  font-size: .8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.footer-updated { margin-top: 4px; font-size: .75rem; }
+
+/* ── Utilities ──────────────────────────────────────────── */
+.hidden { display: none !important; }
+.section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+
+/* ── Loading spinner on button ──────────────────────────── */
+.btn-primary.loading::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,.5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive tweaks ──────────────────────────────────── */
+@media (max-width: 400px) {
+  .hero-title { font-size: 1.35rem; }
+  .best-amount { font-size: 2.2rem; }
+  .input-row { grid-template-columns: 1fr; }
+  .alert-setup .input-row { grid-template-columns: 1fr; }
+}
